@@ -55,13 +55,16 @@ public class ItemDeArtesanato implements Comparable<ItemDeArtesanato>{
     }
 
     public int CompareTo(ItemDeArtesanato o){
+        //Opção 1
         //return this.nome.compareTo(o.getNome());
+        //Opção 2
         if(this.preco < o.getPreco()){
             return -1;
         } else if(this.preco == o.getPreco()){
             return 0;
         }else{
             return 1;
+
         }
     }
 }
