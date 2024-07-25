@@ -6,10 +6,10 @@ public class mensagemParaTodos extends Mensagem{
     }
 
     public String getTextoCompletoAExibir(){
-    if(ehAnonima()){
-        return ("Mensagem para todos. Texto: " + getTexto());
+    if(super.ehAnonima()){
+        return ("Mensagem para todos. Texto: " + super.getTexto());
     } else{
-        return ("Mensagem de: " + getEmailRemetente()+ " para todos. Texto: " + getTexto());
+        return ("Mensagem de: " + super.getEmailRemetente()+ " para todos. Texto: " + super.getTexto());
     }
     }
 }

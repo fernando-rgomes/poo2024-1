@@ -17,9 +17,9 @@ public class mensagemParaAlguem extends Mensagem{
 
     public String getTextoCompletoAExibir(){
     if(ehAnonima()){
-        return ("Mensagem  para: " +emailDestinatario + "Texto: " + getTexto());
+        return ("Mensagem  para: " +emailDestinatario + "Texto: " + super.getTexto());
     } else{
-        return ("Mensagem de: " +getEmailRemetente() + " para: " +emailDestinatario+ " Texto: " + getTexto());
+        return ("Mensagem de: " +super.getEmailRemetente() + " para: " +emailDestinatario+ " Texto: " + super.getTexto());
 
     }
 
