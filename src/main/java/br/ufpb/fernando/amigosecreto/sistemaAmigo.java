@@ -9,19 +9,44 @@ public class sistemaAmigo{
 
     public void cadastraAmigo(String nomeAmigo, String emailAmigo ){
         //TODO
+        Amigo novoAmigo = new Amigo(nomeAmigo, emailAmigo);
+        amigos.add(novoAmigo);
+    }
+
+    public List<Amigo> getAmigos() {
+        return amigos;
     }
 
     public Amigo pesquisaAmigo(String emailAmigo){
-        //TODO
-        return null;
+        for (Amigo a: amigos){
+            if (a.getEmail().equals(emailAmigo)){
+                return a;
+            }
+        }
+        return null; // retorna nulo se o amigo com o email fornecido não existir
     }
 
     public void enviarMensagemParaTodos(String texto, String emailRemetente, boolean ehAnonima){
-        //TODO
+        Mensagem mensagemParaTodos = new Mensagem(texto, emailRemetente, ehAnonima) {
+            @Override
+            public String getTextoCompletoAExibir() {
+                // Adiciona um prefixo para indicar que a mensagem é para todos
+                return "Esta mensagem é para todos! " + getTexto();
+            }
+        };
+
+        // Adiciona a mensagem à lista de mensagens
+        mensagens.add(mensagemParaTodos);
     }
 
     public void enviarMensagemParaAlguem(String texto, String emailRemetente, String emailDestinatario, boolean ehAnonima){
-        //TODO
+        Mensagem mensagemParaAlguem = new Mensagem(texto, emailRemetente, ehAnonima ) {
+            @Override
+            public String getTextoCompletoAExibir() {
+                return "Esta mensagem é privada: " + getTexto();
+            }
+        };
+        mensagens.add(mensagemParaAlguem);
     }
 
     public List<Mensagem> pesquisarMensagensAnonimas(){
@@ -35,12 +60,15 @@ public class sistemaAmigo{
     }
 
     public List<Mensagem> pesquisarTodasAsMensagens(){
-    //TODO
-        return List.of();
+    List<Mensagem> listaComTodasMensagens = new ArrayList<>();
+    for(Mensagem m: this.mensagens){
+        listaComTodasMensagens.add(m);
+    }
+    return listaComTodasMensagens;
+
     }
 
     public void configuraAmigoSecretoDe(String emailDaPessoa, String emailAmigoSorteado) throws amigoNaoExisteException{
-        //TODO
         int cont = 0;
         for(Amigo a: this.amigos ){
             if (a.equals(emailDaPessoa)) {
@@ -53,9 +81,29 @@ public class sistemaAmigo{
             }
         }
 
-    public String pesquisaAmigoSecretoDe(String emailDaPessoa){
-        return "";
+    public String pesquisaAmigoSecretoDe(String emailDaPessoa) throws amigoNaoExisteException, amigoNaoSorteadoException{
+        Amigo amigoEncontrado = null;
+        for (Amigo a: this.amigos){
+           if(a.getEmail().equals(emailDaPessoa)){
+               amigoEncontrado = a;
+               break;
+           }
+
+       }
+        if (amigoEncontrado == null){
+            throw new amigoNaoExisteException("Este amigo com email: "+ emailDaPessoa +" não existe.");
+
+        }
+        String amigoSecreto = amigoEncontrado.getEmailAmigoSorteado();
+        if (amigoSecreto == null){
+
+            throw new amigoNaoSorteadoException("Este amigo não foi sorteado para: "+ emailDaPessoa);
+        }
+        return amigoSecreto;
+
+
     }
+
 
  }
 

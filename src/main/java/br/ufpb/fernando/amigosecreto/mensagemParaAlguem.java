@@ -6,6 +6,7 @@ public class mensagemParaAlguem extends Mensagem{
     public mensagemParaAlguem(String texto, String emailRemetente, String emailDestinatario, boolean anonima ){
         super(texto, emailRemetente, anonima);
 
+
     }
     public String getEmailDestinatario(){
         return emailDestinatario;
