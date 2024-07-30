@@ -7,6 +7,15 @@ public class sistemaAmigo{
     private List<Mensagem> mensagens;
     private List<Amigo> amigos;
 
+    public sistemaAmigo(){
+        this.amigos = new ArrayList<>();
+        this.mensagens = new ArrayList<>();
+
+    }
+
+
+
+
     public void cadastraAmigo(String nomeAmigo, String emailAmigo ){
         //TODO
         Amigo novoAmigo = new Amigo(nomeAmigo, emailAmigo);
@@ -26,7 +35,8 @@ public class sistemaAmigo{
         return null; // retorna nulo se o amigo com o email fornecido não existir
     }
 
-    public void enviarMensagemParaTodos(String texto, String emailRemetente, boolean ehAnonima){
+    public void
+    enviarMensagemParaTodos(String texto, String emailRemetente, boolean ehAnonima){
         Mensagem mensagemParaTodos = new Mensagem(texto, emailRemetente, ehAnonima) {
             @Override
             public String getTextoCompletoAExibir() {
@@ -40,13 +50,8 @@ public class sistemaAmigo{
     }
 
     public void enviarMensagemParaAlguem(String texto, String emailRemetente, String emailDestinatario, boolean ehAnonima){
-        Mensagem mensagemParaAlguem = new Mensagem(texto, emailRemetente, ehAnonima ) {
-            @Override
-            public String getTextoCompletoAExibir() {
-                return "Esta mensagem é privada: " + getTexto();
-            }
-        };
-        mensagens.add(mensagemParaAlguem);
+        Mensagem mensagemParaAlguem = new mensagemParaAlguem(texto, emailRemetente, emailDestinatario, ehAnonima );
+        this.mensagens.add(mensagemParaAlguem);
     }
 
     public List<Mensagem> pesquisarMensagensAnonimas(){
@@ -69,14 +74,15 @@ public class sistemaAmigo{
     }
 
     public void configuraAmigoSecretoDe(String emailDaPessoa, String emailAmigoSorteado) throws amigoNaoExisteException{
-        int cont = 0;
+        Amigo amigo = null;
         for(Amigo a: this.amigos ){
-            if (a.equals(emailDaPessoa)) {
-                a.setEmailAmigoSorteado(emailAmigoSorteado);
-                cont ++;
+            if (a.getEmail().equals(emailDaPessoa)) {
+                amigo = a;
+                amigo.setEmailAmigoSorteado(emailAmigoSorteado);
+                break;
             }
             }
-            if (cont == 0){
+            if (amigo == null ){
                 throw new amigoNaoExisteException("Esse amigo não existe");
             }
         }
@@ -94,6 +100,7 @@ public class sistemaAmigo{
             throw new amigoNaoExisteException("Este amigo com email: "+ emailDaPessoa +" não existe.");
 
         }
+
         String amigoSecreto = amigoEncontrado.getEmailAmigoSorteado();
         if (amigoSecreto == null){
 
