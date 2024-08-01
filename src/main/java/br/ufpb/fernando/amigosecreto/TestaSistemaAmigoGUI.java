@@ -5,7 +5,7 @@ import javax.swing.*;
 public class TestaSistemaAmigoGUI {
     public static void main(String[] args) {
 
-        sistemaAmigo Sistema = new sistemaAmigo();
+        SistemaAmigo Sistema = new SistemaAmigo();
         String nome = JOptionPane.showInputDialog(null, "Digite o nome do amigo: ");
         String email = JOptionPane.showInputDialog(null, "Digite o e-mail do amigo:");
         String texto = JOptionPane.showInputDialog(null, "Digite a mensagem que você quer enviar: ");
