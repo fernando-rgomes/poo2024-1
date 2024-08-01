@@ -3,9 +3,9 @@ package br.ufpb.fernando.amigosecreto;
 import javax.swing.*;
 import java.util.List;
 
-public class testaSistemaAmigo {
+public class TestaSistemaAmigo {
     public static void main(String[] args) {
-        sistemaAmigo sistema = new sistemaAmigo();
+        SistemaAmigo sistema = new SistemaAmigo();
         boolean continuar = true;
 
         while (continuar) {

@@ -1,9 +1,9 @@
 package br.ufpb.fernando.amigosecreto;
 
-public class mensagemParaAlguem extends Mensagem{
+public class MensagemParaAlguem extends Mensagem{
     private String emailDestinatario;
 
-    public mensagemParaAlguem(String texto, String emailRemetente, String emailDestinatario, boolean anonima ){
+    public MensagemParaAlguem(String texto, String emailRemetente, String emailDestinatario, boolean anonima ){
         super(texto, emailRemetente, anonima);
         this.emailDestinatario = emailDestinatario;
 

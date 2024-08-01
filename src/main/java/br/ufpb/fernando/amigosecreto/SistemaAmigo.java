@@ -3,11 +3,11 @@ package br.ufpb.fernando.amigosecreto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class sistemaAmigo{
+public class SistemaAmigo{
     private List<Mensagem> mensagens;
     private List<Amigo> amigos;
 
-    public sistemaAmigo(){
+    public SistemaAmigo(){
         this.amigos = new ArrayList<>();
         this.mensagens = new ArrayList<>();
 

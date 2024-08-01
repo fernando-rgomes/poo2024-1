@@ -1,7 +1,7 @@
 package br.ufpb.fernando.amigosecreto;
 
-public class mensagemParaTodos extends Mensagem{
-    public mensagemParaTodos(String texto, String emailRemetente, boolean anonima){
+public class MensagemParaTodos extends Mensagem{
+    public MensagemParaTodos(String texto, String emailRemetente, boolean anonima){
       super(texto,emailRemetente,anonima);
     }
 
