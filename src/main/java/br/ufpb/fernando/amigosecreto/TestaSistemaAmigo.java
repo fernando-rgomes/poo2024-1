@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.util.List;
 
 public class TestaSistemaAmigo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AmigoJaExisteException {
         SistemaAmigo sistema = new SistemaAmigo();
         boolean continuar = true;
 
@@ -32,7 +32,7 @@ public class TestaSistemaAmigo {
                         String emailAmigoSorteado = JOptionPane.showInputDialog(null, "Informe o Email do amigo Sorteado");
                         sistema.configuraAmigoSecretoDe(emailDaPessoa, emailAmigoSorteado);
                         JOptionPane.showMessageDialog(null, "Amigo secreto cadastrado!");
-                    } catch (amigoNaoExisteException e) {
+                    } catch (AmigoNaoExisteException e) {
                         JOptionPane.showMessageDialog(null, "Erro ao configurar amigos secretos: " + e.getMessage());
                     }
                     break;
@@ -44,7 +44,7 @@ public class TestaSistemaAmigo {
                     boolean ehAnonima = true;
                     sistema.enviarMensagemParaAlguem(texto, emailRemetente, emailDestinatario, ehAnonima);
                     JOptionPane.showMessageDialog(null, "Mensagem enviada com sucesso!");
-                    for (Mensagem m: sistema.pesquisarMensagensAnonimas()){
+                    for (Mensagem m: sistema.pesquisaMensagensAnonimas()){
                         JOptionPane.showMessageDialog(null, m.getTextoCompletoAExibir());
                     }
                     break;
@@ -56,14 +56,14 @@ public class TestaSistemaAmigo {
 
                     sistema.enviarMensagemParaTodos(textoParaTodos, emailRemetenteTodos, anonimo);
                     JOptionPane.showMessageDialog(null, "Mensagem enviada com sucesso!");
-                    for (Mensagem m: sistema.pesquisarMensagensAnonimas()){
+                    for (Mensagem m: sistema.pesquisaMensagensAnonimas()){
                         JOptionPane.showMessageDialog(null, m.getTextoCompletoAExibir());
                     }
                     break;
 
 
                 case "5":
-                    List<Mensagem> mensagensAnonimasPesquisadas = sistema.pesquisarMensagensAnonimas();
+                    List<Mensagem> mensagensAnonimasPesquisadas = sistema.pesquisaMensagensAnonimas();
 
                     // Inicializa uma string vazia para armazenar o texto das mensagens
                     String textoMensagens = "";
@@ -87,9 +87,9 @@ public class TestaSistemaAmigo {
                         String emailAmigoSecreto = sistema.pesquisaAmigoSecretoDe(emailDaPessoa);
                         JOptionPane.showMessageDialog(null, "Ok "+ emailAmigoSecreto + " é seu amigo secreto");
 
-                    } catch (amigoNaoExisteException e){
+                    } catch (AmigoNaoExisteException e){
                         JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-                    } catch (amigoNaoSorteadoException e) {
+                    } catch (AmigoNaoSorteadoException e) {
                         JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
                     }
                     break;

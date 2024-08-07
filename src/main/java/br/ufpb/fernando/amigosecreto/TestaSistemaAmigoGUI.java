@@ -3,7 +3,7 @@ package br.ufpb.fernando.amigosecreto;
 import javax.swing.*;
 
 public class TestaSistemaAmigoGUI {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AmigoJaExisteException {
 
         SistemaAmigo Sistema = new SistemaAmigo();
         String nome = JOptionPane.showInputDialog(null, "Digite o nome do amigo: ");
@@ -17,7 +17,7 @@ public class TestaSistemaAmigoGUI {
         try {
             Sistema.configuraAmigoSecretoDe(email, emailAmigoSorteado);
             JOptionPane.showMessageDialog(null, "O amigo sorteado de " + email + " é " + emailAmigoSorteado);
-        } catch (amigoNaoExisteException e) {
+        } catch (AmigoNaoExisteException e) {
             JOptionPane.showMessageDialog(null, "Este amigo não existe");
         }
     }
